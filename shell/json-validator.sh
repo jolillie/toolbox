@@ -3,9 +3,12 @@
 # Directory to search for JSON files
 SEARCH_DIR="$1"
 
-# Check if the directory argument is provided
+# Check if the directory argument is provided and valid
 if [[ -z "$SEARCH_DIR" ]]; then
     echo "Usage: $0 <directory>"
+    exit 1
+elif [ ! -d "$SEARCH_DIR" ]; then
+    echo "Error: Directory '$SEARCH_DIR' does not exist."
     exit 1
 fi
 
@@ -23,7 +26,7 @@ validate_json() {
     fi
 }
 
-# Export the function so it's available to find -exec
+# Export the function to use it in the find command
 export -f validate_json
 
 # Find and validate all JSON files in the specified directory
