@@ -1,0 +1,28 @@
+---
+- name: Example playbook to create a dict variable and loop over it
+  hosts: localhost
+  gather_facts: no
+
+  vars:
+    people:
+      Alice: 
+        address: "123 Maple Street"
+      Bob: 
+        address: "456 Oak Avenue"
+      Charlie: 
+        address: "789 Pine Road"
+
+  tasks:
+    - name: Display the names and addresses
+      debug:
+        msg: "{{ item.key }} lives at {{ item.value.address }}"
+      loop: "{{ people | dict2items }}"
+
+    - name: Pull out the keys (names)
+      set_fact:
+        names: "{{ people.keys() | list }}"
+
+    - name: Display the names
+      debug:
+        msg: "Name: {{ item }}"
+      loop: "{{ names }}"

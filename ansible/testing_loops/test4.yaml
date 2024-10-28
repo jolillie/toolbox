@@ -1,0 +1,43 @@
+---
+- name: Extract certificateHash values from JSON
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Read the JSON file
+      command: cat test2.json
+      register: bindings_json
+
+    - name: Display the certificateHash values
+      debug:
+        var: bindings_json
+
+    - name: Parse the JSON file
+      set_fact:
+        bindings: "{{ bindings_json.stdout | from_json }}"
+
+    - name: Display the certificateHash values
+      debug:
+        var: bindings
+
+
+    - name: Extract certificateHash values
+      set_fact:
+        certificate_hashes: "{{ bindings | selectattr('protocol', 'equalto', 'https') | map(attribute='certificateHash') | list }}"
+        # certificate_hashes: "{{ bindings | selectattr('protocol', 'equalto', 'https') | list }}"
+        # certificate_hashes: "{{ bindings_json.stdout | from_json | selectattr('protocol', 'equalto', 'https') | list }}"
+
+    - name: Display the certificateHash values
+      debug:
+        var: certificate_hashes
+
+
+    # - name: Display the certificateHash values
+    #   win_shell: |
+    #     echo {{ item }}
+    #   loop: "{{ certificate_hashes }}"
+    #   register: test
+
+    # - name: Display the certificateHash values
+    #   debug:
+    #     var: test

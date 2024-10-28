@@ -1,0 +1,38 @@
+---
+- name: Example playbook to read a dict variable from a JSON file and loop over it
+  hosts: localhost
+  gather_facts: no
+
+  vars_files:
+    - people.json
+
+  tasks:
+    - name: Read the JSON file
+      command: cat people.json
+      register: people_json
+
+    - name: Parse the JSON file
+      set_fact:
+        people: "{{ people_json.stdout | from_json }}"
+
+    - name: Display the names and addresses
+      debug:
+        var: people
+
+    - name: Display the names and addresses
+      debug:
+        msg: "{{ item.key }} lives at {{ item.value.address }}"
+      loop: "{{ people | dict2items }}"
+
+    - name: Pull out the keys (names)
+      set_fact:
+        names: "{{ people.keys() | list }}"
+
+    - name: Display the names
+      debug:
+        msg: "Name: {{ item }}"
+      loop: "{{ names }}"
+
+    - name: Get Charlie's address
+      debug:
+        msg: "Charlie's address is {{ people.Charlie.address }} but Bob's address is {{ people.Bob.address }}"

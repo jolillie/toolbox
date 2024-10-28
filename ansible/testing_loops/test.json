@@ -1,0 +1,34 @@
+{
+  "Attributes": [
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationAttribute",
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationAttribute",
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationAttribute",
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationAttribute",
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationAttribute",
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationAttribute"
+  ],
+  "ChildElements": [],
+  "ElementTagName": "binding",
+  "ItemXPath": "/system.applicationHost/sites/site[@name='TestSite' and @id='1']",
+  "Methods": [
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationMethod",
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationMethod",
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationMethod",
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationMethod",
+    "Microsoft.IIs.PowerShell.Framework.ConfigurationMethod"
+  ],
+  "Schema": {
+    "AllowUnrecognizedAttributes": false,
+    "AttributeSchemas": "Microsoft.IIs.PowerShell.Framework.ConfigurationAttributeSchema Microsoft.IIs.PowerShell.Framework.ConfigurationAttributeSchema Microsoft.IIs.PowerShell.Framework.ConfigurationAttributeSchema Microsoft.IIs.PowerShell.Framework.ConfigurationAttributeSchema Microsoft.IIs.PowerShell.Framework.ConfigurationAttributeSchema Microsoft.IIs.PowerShell.Framework.ConfigurationAttributeSchema",
+    "ChildElementSchemas": null,
+    "CollectionSchema": null,
+    "IsCollectionDefault": false,
+    "Name": "binding"
+  },
+  "bindingInformation": "*:443:",
+  "certificateHash": "C53C1C26B67A2662B7595ACEF85CE7CC9C893060",
+  "certificateStoreName": "MY",
+  "isDsMapperEnabled": false,
+  "protocol": "https",
+  "sslFlags": 0
+}

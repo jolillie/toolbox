@@ -1,0 +1,38 @@
+---
+- name: Example playbook to read a dict variable from a JSON file and loop over it
+  hosts: localhost
+  gather_facts: no
+
+  vars_files:
+    - test.json
+
+  tasks:
+    - name: Read the JSON file
+      command: cat test.json
+      register: test_json
+
+    - name: Parse the JSON file
+      set_fact:
+        test: "{{ test_json.stdout | from_json }}"
+
+    - name: Display the names and addresses
+      debug:
+        var: test
+
+    - name: Display the names and addresses
+      debug:
+        msg: "{{ item.key }}"
+      loop: "{{ test | dict2items }}"
+
+    - name: Pull out the keys (names)
+      set_fact:
+        keys: "{{ test.keys() | list }}"
+
+    - name: Display the names and addresses
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ keys }}"
+
+    - name: Display the names and addresses
+      debug:
+        msg: "The Certificate hash is {{ test.certificateHash }}"
